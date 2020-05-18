@@ -3,10 +3,7 @@
 # But descend into directories
 !*/
 
-# # Recursively allow files under:
-# "mu-plugins", "plugins", "themes" directory
-# !/wp-content/mu-plugins/**
-# !/wp-content/plugins/**
+# Recursively allow files under: "themes" directory
 !/wp-content/themes/**
 
 # ignore this file
