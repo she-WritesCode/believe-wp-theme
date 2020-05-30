@@ -73,7 +73,7 @@ class Believe_Social_Icons_Widget extends WP_Widget
 
         $facebook_profile = '<a class="facebook" href="' . $facebook . '"><i class="fa fa-facebook" aria-hidden="true"></i>Facebook</a> <br>';
         $twitter_profile = '<a class="twitter" href="' . $twitter . '"><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</a> <br>';
-        $linkedin_profile = '<a class="linkedin" href="' . $linkedin . '"><i class="fa fa-linkedin" aria-hidden="true"></i>Linkedin Plus</a> <br>';
+        $linkedin_profile = '<a class="linkedin" href="' . $linkedin . '"><i class="fa fa-linkedin" aria-hidden="true"></i>Linkedin</a> <br>';
         $rss_profile = '<a class="rss" href="' . $rss . '"><i class="fa fa-rss" aria-hidden="true"></i>RSS</a> <br>';
 
         echo $args['before_widget'];

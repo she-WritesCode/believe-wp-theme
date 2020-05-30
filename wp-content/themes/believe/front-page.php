@@ -19,10 +19,10 @@ $children = get_children(['post_parent' => get_the_ID(), 'order' => 'ASC']);
 ?>
 <main id="primary" class="site-main">
 
-    <div class="row my-container py-4 child-pages">
-        <div class="col-12">
+    <div class="row justify-content-center py-4 mx-2 mx-md-0 child-pages">
+        <div class="col-md-8">
             <div class="row">
-                <div class="col-3 py-1 pl-0 border" style="background-color: #ebebeb;">
+                <div class="col-md-3 py-1 pl-0 border" style="background-color: #ebebeb;">
                     <ul class="nav nav-tabs flex-column card-header-tabs sidebar-menu text-uppercase" id="nav-tab" role="tablist">
                         <?php $a = 0;
                         foreach ($children as $child) { ?>
@@ -33,7 +33,7 @@ $children = get_children(['post_parent' => get_the_ID(), 'order' => 'ASC']);
                         } ?>
                     </ul>
                 </div>
-                <div class="col-9 border p-3 child-sub-pages tab-content" id="tab-content">
+                <div class="col-md-9 border p-3 child-sub-pages tab-content" id="tab-content">
                     <?php $i = 0;
                     foreach ($children as $child) { ?>
                         <?php $sub_pages = get_children(['post_parent' => $child->ID]); ?>

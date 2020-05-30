@@ -240,25 +240,48 @@ function believe_footer_widgets_init()
 }
 add_action('widgets_init', 'believe_footer_widgets_init');
 
-function believe_auto_featured_image()
-{
-	global $post;
-	if (!has_post_thumbnail($post->ID)) {
-		$attached_image = get_children("post_parent=$post->ID&post_type=attachment&post_mime_type=image&numberposts=1");
-		if ($attached_image) {
-			foreach ($attached_image as $attachment_id => $attachment) {
-				set_post_thumbnail($post->ID, $attachment_id);
-			}
-		}
-	}
-}
-add_action('the_post', 'believe_auto_featured_image');
-add_action('save_post', 'believe_auto_featured_image');
-add_action('draft_to_publish', 'believe_auto_featured_image');
-add_action('new_to_publish', 'believe_auto_featured_image');
-add_action('pending_to_publish', 'believe_auto_featured_image');
-add_action('future_to_publish', 'believe_auto_featured_image');
+// function believe_auto_featured_image($post = NULL)
+// {
+// 	// retrieve post object
+// 	$post = get_post($post);
+// 	// nothing to do if no post, or post already has thumbnail
+// 	if (!$post instanceof WP_Post || has_post_thumbnail($post->ID))
+// 		return;
+// 	// prepare $thumbnail var
+// 	$thumbnail = NULL;
+// 	// retrieve all the images uploaded to the post
+// 	$images    = get_posts(array(
+// 		'post_parent'    => $post->ID,
+// 		'post_type'      => 'attachment',
+// 		'post_status'    => 'inherit',
+// 		'post_mime_type' => 'image',
+// 		'posts_per_page' => 1
+// 	));
+// 	// if we got some images, save the first in $thumbnail var
+// 	if (is_array($images) && !empty($images))
+// 		$thumbnail = reset($images);
+// 	// if $thumbnail var is valid, set as featured for the post
+// 	if ($thumbnail instanceof WP_Post)
+// 		set_post_thumbnail($post->ID, $thumbnail->ID);
+// }
 
+// add_action('save_post', 'believe_auto_featured_image');
+
+// add_action('admin_init', function () {
+
+// 	if ((int) get_transient(' bulk_believe_auto_featured_image') > 0) {
+// 		return;
+// 	}
+
+// 	$posts = get_posts('posts_per_page=-1');
+// 	if (empty($posts)) {
+// 		return;
+// 	}
+
+// 	$bool = array_walk($posts, 'believe_auto_featured_image');
+
+// 	set_transient('bulk_believe_auto_featured_image', 1);
+// });
 
 function believe_register_social_icons_widget()
 {
@@ -267,3 +290,24 @@ function believe_register_social_icons_widget()
 add_action('widgets_init', 'believe_register_social_icons_widget');
 
 require_once get_template_directory() . '/inc/widgets/classs-believe-social-icons-widget.php';
+
+// function believe_auto_featured_image1()
+// {
+// 	global $post;
+// 	$featured_image_exists = has_post_thumbnail($post->ID);
+// 	if (!$featured_image_exists) {
+// 		$attached_image = get_children("post_parent=$post->ID&post_type=attachment&post_mime_type=image&numberposts=1");
+// 		if ($attached_image) {
+// 			foreach ($attached_image as $attachment_id => $attachment) {
+// 				$bool = set_post_thumbnail($post->ID, $attachment_id);
+// 			}
+// 		}
+// 	}
+// }
+
+// add_action('the_post', 'believe_auto_featured_image1');
+// add_action('save_post', 'believe_auto_featured_image1');
+// add_action('draft_to_publish', 'believe_auto_featured_image1');
+// add_action('new_to_publish', 'believe_auto_featured_image1');
+// add_action('pending_to_publish', 'believe_auto_featured_image1');
+// add_action('future_to_publish', 'believe_auto_featured_image1');

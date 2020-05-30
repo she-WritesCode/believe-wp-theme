@@ -1,5 +1,5 @@
-<div id="#custom-post-type-based-slider" class="py-3 px-5 row" style="background-color: #949599;">
-    <div class="my-container col-12 text-white bg-white p-2">
+<div id="#custom-post-type-based-slider" class="row py-md-4 px-0 justify-content-center" style="background-color: #949599;">
+    <div class="col-md-8 text-white bg-white p-md-2">
         <?php
         $slides = array();
         // $posts_per_page = get_theme_mod('slider_posts_per_page');
@@ -10,17 +10,25 @@
         if ($slider_query->have_posts()) {
             while ($slider_query->have_posts()) {
                 $slider_query->the_post();
-                // if (has_post_thumbnail()) {
                 $temp = array();
-                $thumb_id = get_post_thumbnail_id();
-                $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'full', true);
+                if (has_post_thumbnail()) {
+                    $thumb_id = get_post_thumbnail_id();
+                    $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'full', true);
+                } else {
+                    $attached_images = get_attached_media('image', $post->ID);
+                    if ($attached_images) {
+                        $attached_image = reset($attached_images);
+                        $thumb_url_array = wp_get_attachment_image_src($attached_image->ID, 'full', true);
+                    } else {
+                        $thumb_url_array[] = get_template_directory_uri() . 'no-image.png';
+                    }
+                }
                 $thumb_url = $thumb_url_array[0];
                 $temp['title'] = get_the_title();
                 $temp['excerpt'] = get_the_excerpt();
                 $temp['permalink'] = get_the_permalink();
                 $temp['image'] = $thumb_url;
                 $slides[] = $temp;
-                // }
             }
         }
         wp_reset_postdata();
@@ -68,4 +76,4 @@
 
         <?php } ?>
     </div>
-</div> <!-- #custom-post-type-based-slider -->
+</div><!-- #custom-post-type-based-slider -->

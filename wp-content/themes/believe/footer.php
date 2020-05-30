@@ -13,9 +13,9 @@
 ?>
 
 <footer id="colophon" class="site-footer">
-	<div class="row widget-area">
-		<div class="my-container col-12">
-			<div class="row">
+	<div class="row widget-area justify-content-center">
+		<div class="col-md-8">
+			<div class="row mx-2 mx-md-0">
 				<?php if (is_active_sidebar('footer_1')) : ?>
 					<div class="col-md-3">
 						<?php dynamic_sidebar('footer_1'); ?>
