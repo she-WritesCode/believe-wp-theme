@@ -24,5 +24,6 @@ node_modules/
 *.sqlite
 *.DS_Store
 
-# don't ignore this file
+# don't ignore this files
+!README.md
 !.gitignore
